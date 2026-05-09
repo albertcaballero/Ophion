@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "TextShift",
-    "slug": "textshift",
+    "name": "Ophion",
+    "slug": "ophion",
     "version": "1.0.0",
     "orientation": "portrait",
     "backgroundColor": "#0f0f0f",
@@ -9,7 +9,7 @@
       "adaptiveIcon": {
         "backgroundColor": "#0f0f0f"
       },
-      "package": "com.yourname.textshift"
+      "package": "com.albertcab.ophion"
     },
     "platforms": [
       "android"

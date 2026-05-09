@@ -17,6 +17,7 @@ export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [copied, setCopied] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [outputVisible, setOutputVisible] = useState(false);
 
   const selected = algorithms[selectedIndex];
   const output = input ? selected.transform(input) : "";
@@ -38,8 +39,7 @@ export default function App() {
       >
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>TextShift</Text>
-          <Text style={styles.subtitle}>Transform your text instantly</Text>
+          <Text style={styles.title}>Ophion</Text>
         </View>
 
         {/* Input */}
@@ -51,7 +51,6 @@ export default function App() {
             placeholderTextColor="#555"
             value={input}
             onChangeText={setInput}
-            multiline
             textAlignVertical="top"
           />
         </View>
@@ -102,13 +101,24 @@ export default function App() {
 
         {/* Output */}
         <View style={styles.section}>
-          <Text style={styles.label}>OUTPUT</Text>
+          <View style={styles.labelRow}>
+            <Text style={styles.label}>OUTPUT</Text>
+            <TouchableOpacity
+              onPress={() => setOutputVisible((v) => !v)}
+              activeOpacity={0.7}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            >
+              <Text style={styles.eyeIcon}>{outputVisible ? "🙈" : "👁️"}</Text>
+            </TouchableOpacity>
+          </View>
           <View style={styles.outputBox}>
-            <Text style={styles.outputText} selectable>
-              {output || (
-                <Text style={styles.outputPlaceholder}>
-                  Result will appear here
-                </Text>
+            <Text style={styles.outputText} selectable={outputVisible}>
+              {!output ? (
+                <Text style={styles.outputPlaceholder}>Result will appear here</Text>
+              ) : outputVisible ? (
+                output
+              ) : (
+                <Text style={styles.outputDots}>{"•".repeat(Math.min(output.length, 32))}</Text>
               )}
             </Text>
           </View>
@@ -160,11 +170,19 @@ const styles = StyleSheet.create({
   section: {
     gap: 10,
   },
+  labelRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   label: {
     fontSize: 11,
     fontWeight: "700",
     color: "#e8ff47",
     letterSpacing: 2,
+  },
+  eyeIcon: {
+    fontSize: 18,
   },
   input: {
     backgroundColor: "#1a1a1a",
@@ -174,7 +192,6 @@ const styles = StyleSheet.create({
     padding: 16,
     fontSize: 16,
     color: "#f0f0f0",
-    minHeight: 120,
     lineHeight: 24,
   },
   dropdownTrigger: {
@@ -234,12 +251,16 @@ const styles = StyleSheet.create({
     borderColor: "#2a2a2a",
     borderRadius: 12,
     padding: 16,
-    minHeight: 100,
   },
   outputText: {
     fontSize: 16,
     color: "#f0f0f0",
     lineHeight: 24,
+  },
+  outputDots: {
+    fontSize: 20,
+    color: "#666",
+    letterSpacing: 4,
   },
   outputPlaceholder: {
     color: "#444",
