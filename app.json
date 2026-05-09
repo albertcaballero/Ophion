@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "TextShift",
+    "slug": "textshift",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "backgroundColor": "#0f0f0f",
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0f0f0f"
+      },
+      "package": "com.yourname.textshift"
+    },
+    "platforms": [
+      "android"
+    ],
+    "plugins": [
+      "expo-asset"
+    ]
+  }
+}
