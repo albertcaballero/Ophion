@@ -20,7 +20,7 @@ export default function App() {
   const [outputVisible, setOutputVisible] = useState(false);
 
   const selected = algorithms[selectedIndex];
-  const output = input ? selected.transform(input) : "";
+  const output = input ? selected.transform(input.trim()) : "";
 
   const handleCopy = async () => {
     if (!output) return;

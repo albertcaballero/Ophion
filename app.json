@@ -12,7 +12,8 @@
       "package": "com.albertcab.ophion"
     },
     "platforms": [
-      "android"
+      "android",
+      "web"
     ],
     "plugins": [
       "expo-asset"
